@@ -1,0 +1,315 @@
+#include <stdio.h>
+//ex 01
+int eh_par(int x){
+ return  x%2==0; //retorna 1 caso verdade, 0 caso falso
+}
+
+int main (){
+ printf (" %d \n",eh_par(85)); 
+ printf (" %d \n",eh_par(88)); 
+}
+
+////////////////////////
+
+//ex 02
+
+float desconto(float preco , float desc){
+ return  preco - (preco*desc)/100.0;
+}
+
+int main (){
+  float p = 4000.0 , d = 50.0  ,  novo=desconto (p,d);
+ printf (" Preco: %.2f  Desconto: %.2f     Novo preco %.2f;  \n",
+	  p,d,novo);
+ }
+ 
+ //////////////////////
+
+//ex 03
+void maior(int  a , int b  , int *c){
+if ((a<0) || (b<0))
+  *c=0;
+  else {
+      if (a==b) *c=0;
+      if (a>b) *c=a;
+      if (a<b) *c=b;
+  }
+}
+int main (){
+int x=15;
+maior (20,20,&x);
+printf (" %d \n", x);
+maior (20,-20,&x);
+printf (" %d \n", x);
+maior (-20,20,&x);
+printf (" %d \n", x);
+maior (20,21,&x);
+printf (" %d \n", x);
+maior (22,20,&x);
+printf (" %d \n", x);
+}
+
+///////////////////
+// ex 04
+
+int soma(int  n){
+int acumulador=0;
+  if (n>-1)
+    for (int i=0; i<=n; i++)
+      acumulador+=i;
+    else acumulador=-1;
+return acumulador; 
+}
+int main (){
+printf (" %d\n",soma(3));
+printf (" %d\n",soma(2));
+printf (" %d\n",soma(1));
+printf (" %d\n",soma(-3));
+printf (" %d\n",soma(100));
+}
+
+///////////////////////
+// ex 05
+void tabuada(int  n){
+for (int i=0 ; i< 11 ; i++)
+    printf ("%d x %d = %d\n",n,i,n*i);
+}
+int main (){
+  tabuada(2);
+  tabuada(5);
+  tabuada (432);
+}
+
+/////////////
+// ex 06
+
+int aprovacao(float  n1, float n2, float n3, float n4){
+return ((n1+n2+n3+n4)/4) >= 7.0;
+}
+int main (){
+printf (" Aluno 1 = %d\n", aprovacao(5,3.5,6.8,2.1));
+printf (" Aluno 2 = %d\n", aprovacao(7,8,6,9));
+printf (" Aluno 3 = %d\n", aprovacao(10,10,0,8));
+printf (" Aluno 4 = %d\n", aprovacao(7,6,7,6));
+}
+
+//ex 06 Versao 2
+#include <stdio.h>
+int aprovacao(float  n1, float n2, float n3, float n4){
+return ((n1+n2+n3+n4)/4) >= 7.0;
+}
+int main (){
+  int passou = aprovacao(5,3.5,6.8,2.1);
+  if (passou)
+    printf ("Aprovado\n");
+  else
+    printf ("Reprovado");
+printf (" Aluno 1 = %d\n", passou);
+printf (" Aluno 2 = %d %s\n", aprovacao(7,8,6,9), aprovacao(7,8,6,9)?"Passou":"Ficou" );
+printf (" Aluno 3 = %d %s\n", aprovacao(10,10,0,8),aprovacao(10,10,0,8)?"Passou":"Ficou" );
+printf (" Aluno 4 = %d %s\n", aprovacao(7,6,7,6),aprovacao(7,6,7,6)?"Passou":"Ficou" );
+}
+
+///////////////////////////
+
+// ex 07
+float desconto(float  vp){
+	float novo_valor;
+if ((vp>0) && (vp<=1000.00)) novo_valor =	vp - vp*0.05;
+if ((vp>1000.00) && (vp<=2000.00)) novo_valor = vp - vp*0.1;
+if (vp>2000.00)  novo_valor = vp - vp*0.15;
+return novo_valor;
+}
+int main (){
+printf ("Produto %.2f   Desconto %.2f\n",1000.0, desconto(1000.0));
+printf ("Produto %.2f   Desconto %.2f\n",3000.0, desconto(3000.0));
+printf ("Produto %.2f   Desconto %.2f\n",4000.0, desconto(4000.0));
+printf ("Produto %.2f   Desconto %.2f\n",100.0, desconto(100.0));
+}
+/////////////
+
+// ex 08
+float imposto(float  vp){
+return vp*1.18;
+}
+int main (){
+printf ("Produto %.2f com ICMS %.2f\n",1000.0 , imposto(1000.0));
+printf ("Produto %.2f com ICMS %.2f\n",100.0 , imposto(100.0));
+printf ("Produto %.2f com ICMS %.2f\n",12000.0 , imposto(12000.0));
+}
+
+////////////////////////////
+// ex 09
+float reajuste(float sal, float pct, float *resultado){
+    *resultado = sal*(1+pct/100);
+}
+
+
+int main (){
+    float new_sal;
+    reajuste (1000, 10, &new_sal);
+    printf ("Novo salario = %0.2f\n", new_sal);
+}
+
+
+
+
+
+//ex 10
+void providencia(float i){
+if (i<0.3)  printf ("%.2f Boa: Nenhuma providencia\n",i);
+if ((i>=0.3) && (i<0.4))  printf ("%.2f Ruim: Suspender Empresas da lista A\n",i);
+if ((i>=0.4) && (i<0.5))  printf ("%.2f Pessima: Suspender empresas da lista A e B\n",i);
+if (i>=0.5)   printf ("%.2f Critica: Suspender todas as empresas\n",i);
+}
+
+int main (){
+providencia (0.3);providencia (0.45);
+providencia (0.02);providencia (0.89);
+}
+
+///////////////////////////
+// ex 11
+
+void troca (int *a, int *b){
+    int aux;
+    aux = *a;
+    *a= *b;
+    *b = aux;
+}
+
+int main (){
+    int x=10,y=20;
+    printf ("%d  %d\n", x,y);
+    troca (&x, &y);
+    printf ("%d  %d\n", x,y);
+}
+
+
+
+////////////////////////////////
+
+//ex 12
+
+void imprime_vetor(int v[], int t){ // t = tamanho
+for (int i=0 ; i < t ; i++)
+    printf (" %d ",v[i]);
+printf ("\n");
+}
+
+int main (){
+int a[] = {7,3,4,1,2,8,9}, b[] = {4,2,4} , c[]={ 6,5,3,4,8,9,76,2,3,0,12,13,15,54,23};
+imprime_vetor (a,7);
+imprime_vetor (b,3);
+imprime_vetor (c,15);
+}
+
+//////////////////
+
+//ex 12 versao 2
+void imprime_vetor(int v[],int t){ 
+printf ("Tamanho = %d \n", t);
+for (int i=0 ; i < t ; i++)
+    printf (" %d ",v[i]);
+printf ("\n");
+}
+
+int main (){
+int a[] = {7,3,4,1,2,8,9}, b[] = {4,2,4} , c[]={ 6,5,3,4,8,9,76,2,3,0,12,13,15,54,23};
+imprime_vetor (a,sizeof(a)/sizeof(int));
+imprime_vetor (b,sizeof(b)/sizeof(int));
+imprime_vetor (c,sizeof(c)/sizeof(int));
+}
+
+//////////////////////
+
+// ex 13
+
+void mult_vetor(int v[],int t, int escalar){ 
+for (int i=0 ; i < t ; i++)
+    v[i]*=escalar; // v[i] = v[i] * escalar;
+}
+
+void imprime_vetor(int v[],int t){ 
+printf ("Tamanho = %d \n", t);
+for (int i=0 ; i < t ; i++)
+    printf (" %d ",v[i]);
+printf ("\n");
+}
+
+int main (){
+int a[] = {7,3,4,1,2,8,9};
+imprime_vetor (a,sizeof(a)/sizeof(int));
+mult_vetor(a,sizeof(a)/sizeof(int),2);
+imprime_vetor (a,sizeof(a)/sizeof(int));
+}
+
+/////////////////////////
+//ex 14
+#define TAM 7
+
+void concatena_vetor(int a[],int b[], int c[]){ 
+for (int i=0 , j=TAM; i < TAM ; i++,j++){
+    c[i]=a[i];
+    c[j] = b[i];
+  }
+}
+void imprime_vetor(int v[],int t){ 
+for (int i=0 ; i < t ; i++)
+    printf (" %d ",v[i]);
+printf ("\n");
+}
+int main (){
+int a[TAM] = {7,3,4,1,2,8,9}, b[TAM]= {21,45,32,67,43,98,687}, c[TAM*2];
+imprime_vetor (a,TAM);
+imprime_vetor (b,TAM);
+concatena_vetor(a,b,c);
+imprime_vetor (c,TAM*2);
+}
+
+////////////////////
+//ex 15
+int verifica_pares(int a[],int t){ 
+ int conta_par = 0;
+for (int i =0 ; i < t ; i++)
+    if (a[i]%2==0) conta_par++;
+return (t/2) < conta_par;
+}
+void imprime_vetor(int v[],int t){ 
+for (int i=0 ; i < t ; i++)
+    printf (" %d ",v[i]);
+printf ("\n");
+}
+int main (){
+int a[] = {7,3,4,1,8,2,9,10}, b[]= {21,45,32,66,44,98,682};
+imprime_vetor (a,sizeof(a) / sizeof(int));
+imprime_vetor (b,sizeof(b) / sizeof(int));
+printf (" a = %d\n", verifica_pares(a,sizeof(a) / sizeof(int)));
+printf (" a = %d\n", verifica_pares(b,sizeof(b) / sizeof(int)));
+}
+
+///////////////////
+//ex 16
+#define TAM 7
+void troca_v(int a[],int b[], int t){ 
+int aux,i;
+for (i=0; i < t ; i++){
+   aux = a[i];
+   a[i]=b[i];
+   b[i]=aux;
+  }
+}
+
+
+void imprime_vetor(int v[],int t){ 
+for (int i=0 ; i < t ; i++)
+    printf (" %d ",v[i]);
+printf ("\n");
+}
+int main (){
+int a[] = {7,3,4,1,2,9,10}, b[]= {21,45,32,66,44,98,682};
+imprime_vetor (a,TAM);
+imprime_vetor (b,TAM);
+troca_v (a,b,TAM);
+imprime_vetor (a,TAM);
+imprime_vetor (b,TAM);
